@@ -20,10 +20,7 @@ async function main() {
         username: "harkirat@gmail.com",
         password: "!23456"
     });
-    console.log(user.token);
-    
-    const todo = await trpc.todo.todoCreate.mutate({description: "adsa", title: "asd"});
-    console.log(todo);
+ 
 }
 
 main();
