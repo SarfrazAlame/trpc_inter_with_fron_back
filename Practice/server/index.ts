@@ -6,15 +6,18 @@ const appRouter = router({
     createTodo: publicProcedure
         .input(z.object({
             title: z.string(),
-            description: z.string()
+            description: z.string(),
         }))
         .mutation(async (opts) => {
-            const titile = opts.input.title
+            console.log("Hii there")
+            const title = opts.input.title
             const description = opts.input.description
             // db stuff here
 
             return {
                 id: "1",
+                title,
+                description,
             }
         })
 })
