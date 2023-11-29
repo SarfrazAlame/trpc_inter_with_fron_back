@@ -30,7 +30,7 @@ const appRouter = router({
             // context
             const username = opts.ctx.username
             console.log(username)
-            
+
             let email = opts.input.email
             let password = opts.input.password
 
@@ -40,6 +40,16 @@ const appRouter = router({
             let token = "123123"
             return {
                 token
+            }
+        }),
+    createTodo:publicProcedure
+        .input(z.object({
+            title:z.string()
+        }))
+        .mutation(async(opts)=>{
+            console.log(opts.ctx.username)
+            return {
+                id:"1",
             }
         })
 })
@@ -53,7 +63,7 @@ const server = createHTTPServer({
         console.log(authHeader)
         // jwt.verify
         return {
-            username: "123"
+            username: "sarfraz123"
         }
     }
 });
