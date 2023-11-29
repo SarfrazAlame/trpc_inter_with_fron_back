@@ -29,4 +29,14 @@ function main() {
         console.log(response);
     });
 }
-main();
+// main()
+function signUp() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield trpc.signUp.mutate({
+            email: "sarfraz@gmail.com",
+            password: "1234"
+        });
+        console.log(response);
+    });
+}
+signUp();

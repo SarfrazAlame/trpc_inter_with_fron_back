@@ -28,6 +28,22 @@ const appRouter = (0, trpc_1.router)({
             title,
             description,
         };
+    })),
+    signUp: trpc_1.publicProcedure
+        .input(zod_1.z.object({
+        email: zod_1.z.string(),
+        password: zod_1.z.string()
+    }))
+        .mutation((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("done");
+        let email = opts.input.email;
+        let password = opts.input.password;
+        // Do Validation here
+        // Do DataBase Stuff here
+        let token = "123123";
+        return {
+            token
+        };
     }))
 });
 const server = (0, standalone_1.createHTTPServer)({
