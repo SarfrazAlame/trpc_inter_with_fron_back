@@ -17,20 +17,19 @@ const trpc = (0, client_1.createTRPCProxyClient)({
             headers() {
                 return __awaiter(this, void 0, void 0, function* () {
                     return {
-                        Authorization: "Bearer 1"
+                        Authorization: "Bearer 123"
                     };
                 });
-            },
+            }
         }),
     ],
 });
-function main() {
+function signUp() {
     return __awaiter(this, void 0, void 0, function* () {
-        const user = yield trpc.user.signup.mutate({
-            username: "sarfraz@gmail.com",
-            password: "!12345"
+        const response = yield trpc.createTodo.mutate({
+            title: "Machine learning course",
         });
-        console.log(user);
+        console.log(response);
     });
 }
-main();
+signUp();

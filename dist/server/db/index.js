@@ -17,4 +17,4 @@ const userSchema = new mongoose_1.default.Schema({
     password: String,
 });
 exports.Todo = mongoose_1.default.models.Todo || mongoose_1.default.model('Todo', todoSchema);
-exports.User = mongoose_1.default.models.Todo || mongoose_1.default.model('User', userSchema);
+exports.User = mongoose_1.default.models.User || mongoose_1.default.model('User', userSchema);

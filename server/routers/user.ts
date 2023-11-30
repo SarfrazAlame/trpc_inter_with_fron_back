@@ -22,7 +22,9 @@ export const userRouter = router({
             const token: string = jwt.sign({ userId: userId }, SECRET, { expiresIn: '1h' });
 
             return {
-                token
+                token,
+                username,
+                password
             }
         }),
     login: publicProcedure

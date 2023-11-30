@@ -35,7 +35,9 @@ exports.userRouter = (0, trpc_1.router)({
         let userId = response[0]._id;
         const token = jsonwebtoken_1.default.sign({ userId: userId }, __1.SECRET, { expiresIn: '1h' });
         return {
-            token
+            token,
+            username,
+            password
         };
     })),
     login: trpc_1.publicProcedure
