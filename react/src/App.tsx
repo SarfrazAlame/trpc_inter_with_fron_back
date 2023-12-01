@@ -35,12 +35,12 @@ export default function App() {
     </trpc.Provider>
   );
 }
- 
+
 export function IndexPage() {
   const userQuery = trpc.user.me.useQuery();
   const todoMutate = trpc.todo.todoCreate.useMutation();
   const todoQuery = trpc.todo.todoGet.useQuery();
- 
+
   if (userQuery.isLoading) {
     return <div>Loading...</div>
   }
