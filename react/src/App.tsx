@@ -40,8 +40,8 @@ export function IndexPage() {
   const userQuery = trpc.user.me.useQuery();
   const todoMutate = trpc.todo.todoCreate.useMutation();
   const todoQuery = trpc.todo.todoGet.useQuery();
-
-  if (userQuery.isLoading) {
+ 
+  if (userQuery.isLoading) { 
     return <div>Loading...</div>
   }
   if (userQuery.isError) {
