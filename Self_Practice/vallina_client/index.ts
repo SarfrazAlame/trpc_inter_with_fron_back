@@ -14,8 +14,8 @@ const trpc = createTRPCProxyClient<AppRouter>({
 
 async function main() {
     const user = await trpc.SignUp.query({
-        username: "Sarfraz Khan",
-        password: 11232
+        username: "Sarfraz Khan1",
+        password: 112321,
     })
     console.log(user)
 }

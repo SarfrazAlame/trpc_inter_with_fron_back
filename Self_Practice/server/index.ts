@@ -9,13 +9,12 @@ const appRouter = router({
             password: z.number()
         }))
         .query(async (opts) => {
+            console.log("hii sarfraz")
             const username = opts.input.username
             const password = opts.input.password
 
             return {
-                id: "1",
-                username,
-                password
+                id: "q"
             }
         })
 })
@@ -23,7 +22,7 @@ const appRouter = router({
 export type AppRouter = typeof appRouter
 
 const server = createHTTPServer({
-  router: appRouter,
+    router: appRouter,
 });
- 
+
 server.listen(3000);

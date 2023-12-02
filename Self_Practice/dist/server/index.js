@@ -19,12 +19,11 @@ const appRouter = (0, trpc_1.router)({
         password: zod_1.z.number()
     }))
         .query((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("hii sarfraz");
         const username = opts.input.username;
         const password = opts.input.password;
         return {
-            id: "1",
-            username,
-            password
+            id: "q"
         };
     }))
 });

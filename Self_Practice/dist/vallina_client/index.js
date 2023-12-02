@@ -23,8 +23,8 @@ const trpc = (0, client_1.createTRPCProxyClient)({
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const user = yield trpc.SignUp.query({
-            username: "Sarfraz Khan",
-            password: 11232
+            username: "Sarfraz Khan1",
+            password: 112321,
         });
         console.log(user);
     });
