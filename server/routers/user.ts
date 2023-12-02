@@ -23,8 +23,6 @@ export const userRouter = router({
 
             return {
                 token,
-                username,
-                password
             }
         }),
     login: publicProcedure

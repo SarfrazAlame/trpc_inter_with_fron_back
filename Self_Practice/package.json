@@ -12,6 +12,10 @@
   "dependencies": {
     "@trpc/client": "^10.44.1",
     "@trpc/server": "^10.44.1",
+    "@types/jsonwebtoken": "^9.0.5",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.2",
     "zod": "^3.22.4"
   }
 }
