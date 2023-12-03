@@ -3,7 +3,7 @@ import { createHTTPServer } from '@trpc/server/adapters/standalone';
 import mongoose from "mongoose";
 import cors from 'cors'
 import { Todo, User } from "./db";
-import jwt from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 import { userRouter } from "./routes/users";
 export const SECRET = 'srect123'
 
@@ -30,7 +30,7 @@ const server = createHTTPServer({
             }>((resolve) => {
                 jwt.verify(token, SECRET, (err, user) => {
                     if (user) {
-                        resolve({ userId: user.userId as string, db: { Todo, User } });
+                        resolve({ userId: (user as JwtPayload).userId as string, db: { Todo, User } });
                     } else {
                         resolve({ db: { Todo, User } })
                     }

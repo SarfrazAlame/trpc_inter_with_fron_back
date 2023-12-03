@@ -1,21 +1,18 @@
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
-import type { AppRouter } from '../server';
-//     👆 **type-only** import
+import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
+import { AppRouter } from "../server";
 
-// Pass AppRouter as generic here. 👇 This lets the `trpc` object know
-// what procedures are available on the server and their input/output types.
 const trpc = createTRPCProxyClient<AppRouter>({
     links: [
         httpBatchLink({
-            url: 'http://localhost:3000',
-        }),
-    ],
-});
+            url: "http://localhost:3000",
+        })
+    ]
+})
 
-async function main() {
-    const user = await trpc.SignUp.query({
-        username: "Sarfraz Khan1",
-        password: 112321,
+async function main(){
+    const user = await trpc.user.signUp.mutate({
+        username:"Sarfraz Khan",
+        password:"sar@123"
     })
     console.log(user)
 }

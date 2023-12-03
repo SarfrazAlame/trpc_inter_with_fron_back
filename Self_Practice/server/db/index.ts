@@ -9,7 +9,7 @@ const todoSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
     username: { type: String },
-    password: String
+    password: String 
 })
 
 export const Todo = mongoose.models.Todo || mongoose.model('Todo', todoSchema)

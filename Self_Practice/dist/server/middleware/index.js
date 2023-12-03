@@ -9,21 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const client_1 = require("@trpc/client");
-const trpc = (0, client_1.createTRPCProxyClient)({
-    links: [
-        (0, client_1.httpBatchLink)({
-            url: "http://localhost:3000",
-        })
-    ]
-});
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const user = yield trpc.user.signUp.mutate({
-            username: "Sarfraz Khan",
-            password: "sar@123"
-        });
-        console.log(user);
+exports.isLoggedIn = void 0;
+const server_1 = require("@trpc/server");
+const trpc_1 = require("../trpc");
+exports.isLoggedIn = (0, trpc_1.middleware)((opts) => __awaiter(void 0, void 0, void 0, function* () {
+    const { ctx } = opts;
+    if (!ctx.userId) {
+        throw new server_1.TRPCError({ code: 'UNAUTHORIZED' });
+    }
+    let user = yield ctx.db.User.findOne({
+        username: ctx.userId
     });
-}
-main();
+    return opts.next({
+        ctx: {
+            user
+        }
+    });
+}));

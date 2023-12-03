@@ -8,9 +8,10 @@ export const userRouter = router({
     signUp: publicProcedure
         .input(z.object({
             username: z.string(),
-            password: z.number()
+            password: z.string()
         }))
         .mutation(async (opts) => {
+            console.log("hiii sarfraz")
             const username = opts.input.username
             const password = opts.input.password
             const response = await opts.ctx.db.User.insertMany([{
@@ -18,10 +19,11 @@ export const userRouter = router({
                 password
             }])
             let userId = response[0]._id
-            const token = jwt.sign({ userId: userId }, SECRET, { expiresIn: '7d' })
+            const token: string = jwt.sign({ userId: userId }, SECRET, { expiresIn: '1h' })
 
             return {
-                token
+                token,
+                id :"1"
             }
         })
 })
