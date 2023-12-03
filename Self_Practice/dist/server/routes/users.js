@@ -17,6 +17,8 @@ const trpc_1 = require("../trpc");
 const zod_1 = require("zod");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const __1 = require("..");
+const server_1 = require("@trpc/server");
+const middleware_1 = require("../middleware");
 exports.userRouter = (0, trpc_1.router)({
     signUp: trpc_1.publicProcedure
         .input(zod_1.z.object({
@@ -36,6 +38,37 @@ exports.userRouter = (0, trpc_1.router)({
         return {
             token,
             id: "1"
+        };
+    })),
+    login: trpc_1.publicProcedure
+        .input(zod_1.z.object({
+        username: zod_1.z.string(),
+        password: zod_1.z.string()
+    }))
+        .mutation((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield opts.ctx.db.User.find({
+            username: opts.input.username
+        });
+        if (!response) {
+            throw new server_1.TRPCError({ code: "UNAUTHORIZED" });
+        }
+        const token = yield jsonwebtoken_1.default.sign({ userId: opts.ctx.userId }, __1.SECRET, { expiresIn: "1h" });
+        return {
+            token
+        };
+    })),
+    me: trpc_1.publicProcedure
+        .use(middleware_1.isLoggedIn)
+        .output(zod_1.z.object({
+        username: zod_1.z.string()
+    }))
+        .query((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield opts.ctx.db.User.findById(opts.ctx.userId);
+        if (!response) {
+            throw new server_1.TRPCError({ code: "UNAUTHORIZED" });
+        }
+        return {
+            username: response.username || ""
         };
     }))
 });
