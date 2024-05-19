@@ -30,7 +30,7 @@ const server = createHTTPServer({
 
     if (authHeader) {
       const token = authHeader.split(" ")[1];
-      console.log(token);
+      console.log("tokenx",token);
       return new Promise<{
         db: { Todo: typeof Todo; User: typeof User };
         userId?: string;

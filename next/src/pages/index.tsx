@@ -1,4 +1,4 @@
-import { trpc } from '../utils/trpc';
+import { trpc } from "../utils/trpc";
 
 export default function IndexPage() {
   const userQuery = trpc.user.me.useQuery();
@@ -6,7 +6,7 @@ export default function IndexPage() {
     return <div>Loading...</div>;
   }
   if (userQuery.error) {
-    return <Signup />
+    return <Signup />;
   }
   return (
     <div>
@@ -16,7 +16,5 @@ export default function IndexPage() {
 }
 
 function Signup() {
-  return <div>
-    Signup page
-  </div>
+  return <div>Signup page</div>;
 }
